@@ -1,0 +1,31 @@
+## Summary
+The `find_best_match` function attempts to reconcile a bank statement entry with entries in a reconciliation CSV file by matching the name, reference, and amount fields using fuzzy matching techniques.
+
+## Example Usage
+```python
+bank_statement = {
+    'Name': 'John Doe',
+    'Reference': 'INV12345',
+    'Date': '2023-10-01',
+    'Amount': '1,000.00'
+}
+reconciliation_csv = 'reconciliation.csv'
+result = find_best_match(bank_statement, reconciliation_csv)
+print(result)
+```
+
+## Code Analysis
+### Inputs
+- `bank_statement`: A dictionary containing 'Name', 'Reference', 'Date', and 'Amount' of the bank statement entry.
+- `reconciliation_csv`: A string representing the file path to the reconciliation CSV file.
+___
+### Flow
+1. Read the reconciliation CSV file into a DataFrame.
+2. Extract details from the `bank_statement` dictionary.
+3. Perform fuzzy matching on the 'Name' field and handle single or multiple matches.
+4. If no satisfactory match is found by name, perform fuzzy matching on the 'Reference' field and handle single or multiple matches.
+5. Return the best match found or `None` if no match is found.
+___
+### Outputs
+- A dictionary containing the best matching entry from the reconciliation CSV file or `None` if no match is found.
+___
